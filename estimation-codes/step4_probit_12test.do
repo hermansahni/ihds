@@ -117,25 +117,8 @@ foreach m of local depvars {
 
 
 
-/*
-	pe gen ch1213     = ch12x + ch13x 
-	pe gen water_time1 = watertime_fadu + watertime_f + watertime_m 
-	pe gen walk_fuel1  = walkfuel_fadu  + walkfuel_f  + walkfuel_m
-	pe gen water_time  = watertime_fadu + watertime_madu + watertime_f + watertime_m 
-	pe gen walk_fuel   = walkfuel_fadu  + walkfuel_madu  + walkfuel_f  + walkfuel_m
-*/
-
-
-
-	pca watertime_fadu watertime_f watertime_m
-	rotate
-	
-	// predicts the index variable.
-	predict water_index 
-	estat kmo
-
-
-
+	gen wtrtym = cond(!mi(watertime_fadu), watertime_fadu, cond(!mi(watertime_f), watertime_f , cond(!mi(watertime_m), watertime_m, watertime_madu)))
+	gen fultym = cond(!mi(walkfuel_fadu), walkfuel_fadu, cond(!mi(walkfuel_f), walkfuel_f , cond(!mi(walkfuel_m), walkfuel_m, walkfuel_madu)))
 
 
 
