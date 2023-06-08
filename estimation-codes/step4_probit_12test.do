@@ -116,11 +116,27 @@ foreach m of local depvars {
         //--------------------------------------------------------------------------
 
 
+
+/*
 	pe gen ch1213     = ch12x + ch13x 
 	pe gen water_time1 = watertime_fadu + watertime_f + watertime_m 
 	pe gen walk_fuel1  = walkfuel_fadu  + walkfuel_f  + walkfuel_m
 	pe gen water_time  = watertime_fadu + watertime_madu + watertime_f + watertime_m 
 	pe gen walk_fuel   = walkfuel_fadu  + walkfuel_madu  + walkfuel_f  + walkfuel_m
+*/
+
+
+
+	pca watertime_fadu watertime_f watertime_m
+	rotate
+	
+	// predicts the index variable.
+	predict water_index 
+	estat kmo
+
+
+
+
 
 
         //--------------------------------------------------------------------------
