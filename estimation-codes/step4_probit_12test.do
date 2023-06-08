@@ -116,9 +116,8 @@ foreach m of local depvars {
         //--------------------------------------------------------------------------
 
 
-
-	gen wtrtym = cond(!mi(watertime_fadu), watertime_fadu, cond(!mi(watertime_f), watertime_f , cond(!mi(watertime_m), watertime_m, watertime_madu)))
-	gen fultym = cond(!mi(walkfuel_fadu), walkfuel_fadu, cond(!mi(walkfuel_f), walkfuel_f , cond(!mi(walkfuel_m), walkfuel_m, walkfuel_madu)))
+	gen wtrtym = cond(!mi(watertime_fadu), watertime_fadu, cond(!mi(watertime_f), watertime_f , cond(!mi(watertime_m), watertime_m, .)))
+	gen fultym = cond(!mi(walkfuel_fadu), walkfuel_fadu, cond(!mi(walkfuel_f), walkfuel_f , cond(!mi(walkfuel_m), walkfuel_m, .)))
 
 
 
