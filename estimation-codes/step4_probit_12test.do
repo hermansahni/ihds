@@ -119,14 +119,14 @@ foreach m of local depvars {
 	gen wtrtym = cond(!mi(watertime_fadu), watertime_fadu, cond(!mi(watertime_f), watertime_f , cond(!mi(watertime_m), watertime_m, .)))
 	gen fultym = cond(!mi(walkfuel_fadu), walkfuel_fadu, cond(!mi(walkfuel_f), walkfuel_f , cond(!mi(walkfuel_m), walkfuel_m, .)))
 
-	egen wtrtym1 = rowmax(watertime*) 
-	egen fultym1 = rowmax(walkfuel*)
+	egen wtrtym1 = rowmax(watertime_fadu watertime_f watertime_m) 
+	egen fultym1 = rowmax(walkfuel_fadu walkfuel_f walkfuel_m)
 
-	egen wmiss = rowmiss(watertime*)  
-	egen fmiss = rowmiss(walkfuel*)  
+	egen wmiss = rowmiss(watertime_fadu watertime_f watertime_m)  
+	egen fmiss = rowmiss(walkfuel_fadu walkfuel_f walkfuel_m)  
 	
-	egen wtrtym2 = rowtotal(watertime*) if wmiss < 4
-	egen fultym2 = rowtotal(walkfuel*) if fmiss < 4
+	egen wtrtym2 = rowtotal(watertime_fadu watertime_f watertime_m) if wmiss < 3
+	egen fultym2 = rowtotal(walkfuel_fadu walkfuel_f walkfuel_m) if fmiss < 3
 		drop wmiss fmiss
 	
 
