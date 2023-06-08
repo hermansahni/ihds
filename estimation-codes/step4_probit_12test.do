@@ -119,7 +119,16 @@ foreach m of local depvars {
 	gen wtrtym = cond(!mi(watertime_fadu), watertime_fadu, cond(!mi(watertime_f), watertime_f , cond(!mi(watertime_m), watertime_m, .)))
 	gen fultym = cond(!mi(walkfuel_fadu), walkfuel_fadu, cond(!mi(walkfuel_f), walkfuel_f , cond(!mi(walkfuel_m), walkfuel_m, .)))
 
+	egen wtrtym1 = rowmax(watertime*) 
+	egen fultym1 = rowmax(walkfuel*)
 
+	egen wmiss = rowmiss(watertime*)  
+	egen fmiss = rowmiss(walkfuel*)  
+	
+	egen wtrtym2 = rowtotal(watertime*) if wmiss < 4
+	egen fultym2 = rowtotal(walkfuel*) if fmiss < 4
+		drop wmiss fmiss
+	
 
         //--------------------------------------------------------------------------
         // 2. drop missing obervations of all study variables ..
