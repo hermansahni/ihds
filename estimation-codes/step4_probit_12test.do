@@ -89,7 +89,7 @@ local cvars1 `" $cvars1 "'
 
 local ovars  i.stateid i.groups8x // state, caste, religion, year dummies 
 
-local instr `" $instrvars " "math" ' // instruments used
+local instr `" $instrvars "' // instruments used
 
 global sex = 0 // 0 = male, 1 = female 
 
