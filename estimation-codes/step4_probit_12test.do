@@ -129,6 +129,10 @@ foreach m of local depvars {
 	egen fultym2 = rowtotal(walkfuel_fadu walkfuel_f walkfuel_m) if fmiss < 3
 		drop wmiss fmiss
 	
+	pca watertime_fadu watertime_f watertime_m
+	rotate
+	predict water_index
+	estat kmo
 
         //--------------------------------------------------------------------------
         // 2. drop missing obervations of all study variables ..
