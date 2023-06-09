@@ -214,7 +214,8 @@ foreach m of local depvars {
         di    "Education variable: `m'" 
         di    "-----------------------------------------------------------------"
 
-        pe probit `m' i.`elecvar' `cvars' `ovars'  , vce( robust ) 
+        // pe probit `m' i.`elecvar' `cvars' `ovars'  , vce( robust ) 
+           pe probit `m' i.`elecvar' `cvars'  , vce( robust ) 
 
 		pe eststo: margins , dydx(`elecvar') post // marginal effects
 
