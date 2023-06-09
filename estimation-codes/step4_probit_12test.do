@@ -82,7 +82,7 @@ tlinesdensity1       // Trasmission line length density (Line length per sqkm)
 ------------------------------------------------------------------------------*/
 local elecvar $electricity
 
-local depvars `" "walkfuel_fadu" "watertime_fadu" "' // dependent variables ... "agematch_ed5x" "read" "math" "write"
+local depvars `" "walkfuel_fadu" "watertime_fadu" "watertime_f" "watertime_m" "' // dependent variables ... "agematch_ed5x" "read" "math" "write"
 
 local cvars `" $cvars "' 
 local cvars1 `" $cvars1 "' 
