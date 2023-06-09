@@ -82,7 +82,7 @@ tlinesdensity1       // Trasmission line length density (Line length per sqkm)
 ------------------------------------------------------------------------------*/
 local elecvar $electricity
 
-local depvars `" "walkfuel_fadu" "watertime_fadu" "watertime_f" "watertime_m" "' // dependent variables ... "agematch_ed5x" "read" "math" "write"
+local depvars `" "agematch_ed5x" "read" "math" "write" "' // dependent variables ...  "walkfuel_fadu" "watertime_fadu" "watertime_f" "watertime_m"
 
 local cvars `" $cvars "' 
 local cvars1 `" $cvars1 "' 
@@ -214,8 +214,8 @@ foreach m of local depvars {
         di    "Education variable: `m'" 
         di    "-----------------------------------------------------------------"
 
-       // pe probit `m' i.`elecvar' `cvars' `ovars'  //, vce( robust ) 
-          pe probit `m' i.`elecvar' `cvars' // , vce( robust ) 
+        pe probit `m' i.`elecvar' `cvars' `ovars' , vce( robust ) 
+        //  pe probit `m' i.`elecvar' `cvars' // , vce( robust ) 
 
 		pe eststo: margins , dydx(`elecvar') post // marginal effects
 
