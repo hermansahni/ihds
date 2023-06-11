@@ -115,22 +115,7 @@ foreach m of local depvars {
 	pe tab sample, missing 
         //--------------------------------------------------------------------------
 
-	gen elecqual3h = elecqual3 == 2
-		replace elecqual3h = . if missing( elecqual3 )	
-	gen elecqual3l = elecqual3 == 1
-		replace elecqual3l = . if missing( elecqual3 )	
 	
-	gen elecqual4h = elecqual4 == 2
-		replace elecqual4h = . if missing( elecqual4 )	
-	gen elecqual4l = elecqual4 == 1
-		replace elecqual4l = . if missing( elecqual4 )	
-		
-	gen elecqual5h = elecqual5 == 2
-		replace elecqual5h = . if missing( elecqual5 )	
-	gen elecqual5l = elecqual5 == 1
-		replace elecqual5l = . if missing( elecqual5 )	
-
-
         //--------------------------------------------------------------------------
         // 2. drop missing obervations of all study variables ..
         //--------------------------------------------------------------------------
@@ -161,12 +146,12 @@ foreach m of local depvars {
         // 3. multicollinearity check: states with 100% electrification 
         //--------------------------------------------------------------------------
         pe tabulate stateid 
-        //pe bys stateid: egen meanelec = mean( `elecvar' ) if inlist( sample, 1 )
-        //pe tabulate stateid if meanelec == 1 // which states will be dropped?
+        pe bys stateid: egen meanelec = mean( `elecvar' ) if inlist( sample, 1 )
+        pe tabulate stateid if meanelec == 1 // which states will be dropped?
 
-	//pe replace sample = 0 if inlist(sample, 1) & inlist(meanelec, 1) 
-	//	pe drop meanelec 
-	//pe tab sample, missing 
+	pe replace sample = 0 if inlist(sample, 1) & inlist(meanelec, 1) 
+		pe drop meanelec 
+	pe tab sample, missing 
        //--------------------------------------------------------------------------
 
 
